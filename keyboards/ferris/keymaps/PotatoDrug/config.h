@@ -19,7 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Pick good defaults for enabling homerow modifiers
 #define TAPPING_TERM 200
+#define COMBO_TERM 50
 // #define IGNORE_MOD_TAP_INTERRUPT
 
 #define FORCE_NKRO
-#define COMBO_COUNT 7
+#define COMBO_COUNT 23

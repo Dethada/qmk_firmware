@@ -1,59 +1,109 @@
-// this is the style you want to emulate.
-// This is the canonical layout file for the Quantum project. If you want to add another keyboard,
-
 #include QMK_KEYBOARD_H
 
 // MACROS
 
 enum custom_keycodes {
     M_INPUTSWITCH = SAFE_RANGE,
+    M_UNDO,
+    M_CUT,
+    M_COPY,
+    M_PASTE
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-    case M_INPUTSWITCH:
-        if (record->event.pressed) {
-            // when keycode M_INPUTSWITCH is pressed
-            register_code(KC_LWIN);
-            register_code(KC_SPC);
-        } else {
-            // when keycode M_INPUTSWITCH is released
-            unregister_code(KC_LWIN);
-            unregister_code(KC_SPC);
-        }
-        break;
+      case M_INPUTSWITCH:
+          if (record->event.pressed) {
+              // when keycode M_INPUTSWITCH is pressed
+              register_code(KC_LWIN);
+              register_code(KC_SPC);
+          } else {
+              // when keycode M_INPUTSWITCH is released
+              unregister_code(KC_LWIN);
+              unregister_code(KC_SPC);
+          }
+          break;
+        case M_UNDO:
+          if (record->event.pressed) {
+              register_code(KC_LCTL);
+              register_code(KC_Z);
+          } else {
+              unregister_code(KC_LCTL);
+              unregister_code(KC_Z);
+          }
+          break;
+        case M_CUT:
+          if (record->event.pressed) {
+              register_code(KC_LCTL);
+              register_code(KC_X);
+          } else {
+              unregister_code(KC_LCTL);
+              unregister_code(KC_X);
+          }
+          break;
+        case M_COPY:
+          if (record->event.pressed) {
+              register_code(KC_LCTL);
+              register_code(KC_C);
+          } else {
+              unregister_code(KC_LCTL);
+              unregister_code(KC_C);
+          }
+          break;
+        case M_PASTE:
+          if (record->event.pressed) {
+              register_code(KC_LCTL);
+              register_code(KC_V);
+          } else {
+              unregister_code(KC_LCTL);
+              unregister_code(KC_V);
+          }
+          break;
     }
     return true;
 };
 
 // LAYERS
 
-// Each layer gets a name for readability, which is then used in the keymap matrix below.
-// The underscores don't mean anything - you can have a layer called STUFF or any other name.
-// Layer names don't all need to be of the same length, obviously, and you can also skip them
-// entirely and just use numbers.
-
 enum ferris_layers {
   _BASE,
   _FUNC,
-  _NAV,
-  _SYM,
+  _NAVSYM,
   _NUM
 };
 
 #define KC_GUISPC MT(MOD_LGUI, KC_SPC)
-#define KC_SFTTAB MT(MOD_LSFT, KC_TAB)
 #define KC_CTLBSPC MT(MOD_LCTL, KC_BSPC)
 #define KC_ALTENT MT(MOD_LALT, KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+// ___Q___ , ___W___ , ___F___ , ___P___ , ___G___     ,     ___J___ , ___L___ , ___U___ , ___Y___ , ___;___ ,
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+// ___A___ , ___R___ , ___S___ , ___T___ , ___D___     ,     ___H___ , ___N___ , ___E___ , ___I___ , ___O___ ,
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+// ___Z___ , ___X___ , ___C___ , ___V___ , ___B___     ,     ___K___ , ___M___ , ___,___ , ___.___ , ___/___ ,
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+//                               WIN/SPC , __SFT__     ,     CTRLSPC , ALTENTR
+//                              ---------+---------+---+---+---------+---------                              //
   [_BASE] = LAYOUT( /* BASE */
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,            KC_J,    KC_L,  KC_U,    KC_Y,   KC_SCLN,
     KC_A,    KC_R,    KC_S,    KC_T,    KC_D,            KC_H,    KC_N,  KC_E,    KC_I,   KC_O,
     KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,            KC_K,    KC_M,  KC_COMM, KC_DOT, KC_SLSH,
-                              KC_GUISPC, KC_SFTTAB, KC_CTLBSPC, KC_ALTENT
+                              KC_GUISPC, KC_LSFT, KC_CTLBSPC, KC_ALTENT
   ),
 
+
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+// __F12__ , __F7___ , __F8___ , __F9___ , __CAPS_     ,     ___J___ , _MUTE__ , _VOLD__ , _VOLU__ , ___;___ ,
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+// __F11__ , __F4___ , __F5___ , __F6___ , __APP__     ,     ___H___ , _MPRV__ , ___E___ , _MPLY__ , _MNXT__ ,
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+// __F10__ , __F1___ , __F2___ , __F3___ , __INS__     ,     __PSCR_ , _MACRO_ , ___,___ , ___.___ , ___/___ ,
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+//                               WIN/SPC , __SFT__     ,     CTRLSPC , ALTENTR
+                              //---------+---------+---+---+---------+---------//
   [_FUNC] = LAYOUT( /* FUNCTIONS */
     KC_F12,    KC_F7,    KC_F8,    KC_F9,    KC_CAPS,           KC_J,     KC_MUTE,       KC_VOLD, KC_VOLU,   KC_SCLN,
     KC_F11,    KC_F4,    KC_F5,    KC_F6,    KC_APP,            KC_H,     KC_MPRV,       KC_E,    KC_MPLY,   KC_MNXT,
@@ -61,25 +111,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                          KC_LWIN, KC_LSFT, KC_LCTL, KC_LALT
   ),
 
-  [_NAV] = LAYOUT( /* NAVIGATION */
-    KC_Q,      KC_W,   KC_F,    KC_P,     KC_G,            KC_J,    KC_L,     KC_U,      KC_Y,    KC_SCLN,
-    KC_DELETE, KC_CUT, KC_COPY, KC_PASTE, KC_UNDO,         KC_ESC,  KC_LEFT,  KC_DOWN,   KC_UP,   KC_RIGHT,
-    KC_Z,      KC_X,   KC_C,    KC_V,     KC_B,            KC_K,    KC_HOME,  KC_PGDOWN, KC_PGUP, KC_END,
-                              KC_GUISPC, KC_SFTTAB, KC_CTLBSPC, KC_ALTENT
+
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+// ___^___ , ___&___ , ___*___ , ___`___ , ___~___     ,     ___+___ , ___-___ , ___|___ , ___\___ , ___;___ ,
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+// _MACRO_ , _MACRO_ , _MACRO_ , _MACRO_ , __DEL__     ,     __ESC__ , ___←___ , ___↓___ , ___↑___ , ___→___ ,
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+// ___!___ , ___@___ , ___#___ , ___$___ , ___%___     ,     ___K___ , _HOME__ , __PGD__ , __PGU__ , __END__ ,
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+//                               WIN/SPC , __SFT__     ,     CTRLSPC , ALTENTR
+                              //---------+---------+---+---+---------+---------//
+  [_NAVSYM] = LAYOUT( /* NAVIGATION & SYMBOLS */
+    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_GRV,    KC_TILD,            KC_PLUS, KC_MINS,  KC_PIPE,   KC_BSLS,  KC_SCLN,
+    M_UNDO,     M_CUT,      M_COPY,     M_PASTE,   KC_DELETE,          KC_ESC,  KC_LEFT,  KC_DOWN,   KC_UP,    KC_RIGHT,
+    KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,    KC_PERC,            KC_K,    KC_HOME,  KC_PGDOWN, KC_PGUP,  KC_END,
+                              KC_GUISPC, KC_LSFT, KC_CTLBSPC, KC_ALTENT
   ),
 
-  [_SYM] = LAYOUT( /* SYMBOLS */
-    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_GRV,    KC_TILD,            KC_MINS, KC_DQUO,  KC_QUOT,    KC_PLUS,   KC_SCLN,
-    KC_UNDS,    KC_MINS,    KC_LPRN,    KC_RPRN,   KC_EQL,             KC_PIPE, KC_LCBR,  KC_LCBR,    KC_LBRC,   KC_RBRC,
-    KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,    KC_PERC,            KC_BSLS, KC_M,     KC_COMM,    KC_DOT,    KC_SLSH,
-                              KC_GUISPC, KC_SFTTAB, KC_CTLBSPC, KC_ALTENT
-  ),
 
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+// ___Q___ , ___W___ , ___F___ , ___P___ , ___G___     ,     ___J___ , ___7___ , ___8___ , ___9___ , ___;___ ,
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+// ___+___ , ___-___ , ___*___ , ___/___ , ___=___     ,     ___0___ , ___4___ , ___5___ , ___6___ , ___O___ ,
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+// ___Z___ , ___X___ , ___C___ , ___V___ , ___%___     ,     ___K___ , ___1___ , ___2___ , ___3___ , ___.___ ,
+//---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
+//                               WIN/SPC , __SFT__     ,     CTRLSPC , ALTENTR
+                              //---------+---------+---+---+---------+---------//
   [_NUM] = LAYOUT( /* NUMBERS */
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,            KC_J,   KC_7,  KC_8,    KC_9,   KC_SCLN,
     KC_PLUS, KC_MINS, KC_ASTR, KC_SLSH, KC_EQL,          KC_0,   KC_4,  KC_5,    KC_6,   KC_O,
-    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,            KC_DOT, KC_1,  KC_2,    KC_3,   KC_SLSH,
-                              KC_GUISPC, KC_SFTTAB, KC_CTLBSPC, KC_ALTENT
+    KC_Z,    KC_X,    KC_C,    KC_V,    KC_PERC,         KC_K,   KC_1,  KC_2,    KC_3,   KC_DOT,
+                              KC_GUISPC, KC_LSFT, KC_CTLBSPC, KC_ALTENT
   )
 };
 
@@ -88,35 +151,62 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 enum combo_events {
   TO_BASE_LAYER_0,
   TO_BASE_LAYER_1,
-  // TO_BASE_LAYER_2,
   TO_BASE_LAYER_3,
-  // TO_BASE_LAYER_4,
   TO_FUNC_LAYER,
-  TO_NAV_LAYER,
+  TO_NAVSYM_LAYER,
   TO_SYM_LAYER,
   TO_NUM_LAYER
 };
 
+// layer combos
 const uint16_t PROGMEM base_base_combo[] = {KC_F, KC_P, COMBO_END};
 const uint16_t PROGMEM base_func_combo[] = {KC_F8, KC_F9, COMBO_END};
-// const uint16_t PROGMEM base_nav_combo[] = {KC_COPY, KC_PASTE, COMBO_END};
-const uint16_t PROGMEM base_sym_combo[] = {KC_ASTR, KC_GRV, COMBO_END};
-// const uint16_t PROGMEM base_num_combo[] = {KC_ASTR, KC_SLSH, COMBO_END};
+const uint16_t PROGMEM base_navsym_combo[] = {KC_ASTR, KC_GRV, COMBO_END};
 const uint16_t PROGMEM func_combo[] = {KC_L, KC_U, COMBO_END};
-const uint16_t PROGMEM nav_combo[] = {KC_U, KC_Y, COMBO_END};
-const uint16_t PROGMEM sym_combo[] = {KC_L, KC_Y, COMBO_END};
-const uint16_t PROGMEM num_combo[] = {KC_L, KC_SCLN, COMBO_END};
+const uint16_t PROGMEM navsym_combo[] = {KC_U, KC_Y, COMBO_END};
+const uint16_t PROGMEM num_combo[] = {KC_L, KC_Y, COMBO_END};
+
+// key combos
+const uint16_t PROGMEM esc_combo[] = {KC_D, KC_H, COMBO_END};
+const uint16_t PROGMEM delete_combo[] = {KC_B, KC_K, COMBO_END};
+const uint16_t PROGMEM tab_combo[] = {KC_P, KC_G, COMBO_END};
+const uint16_t PROGMEM lparen_combo[] = {KC_S, KC_T, COMBO_END};
+const uint16_t PROGMEM rparen_combo[] = {KC_T, KC_D, COMBO_END};
+const uint16_t PROGMEM underscore_combo[] = {KC_A, KC_R, COMBO_END};
+const uint16_t PROGMEM dash_combo[] = {KC_R, KC_S, COMBO_END};
+const uint16_t PROGMEM equals_combo[] = {KC_V, KC_B, COMBO_END};
+const uint16_t PROGMEM dquote_combo[] = {KC_M, KC_DOT, COMBO_END};
+const uint16_t PROGMEM squote_combo[] = {KC_DOT, KC_SLSH, COMBO_END};
+const uint16_t PROGMEM lsquare_combo[] = {KC_H, KC_N, COMBO_END};
+const uint16_t PROGMEM rsquare_combo[] = {KC_N, KC_E, COMBO_END};
+const uint16_t PROGMEM lcurly_combo[] = {KC_E, KC_I, COMBO_END};
+const uint16_t PROGMEM rcurly_combo[] = {KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM carrot_combo[] = {KC_M, KC_COMM, COMBO_END};
+const uint16_t PROGMEM dollar_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [TO_BASE_LAYER_0] = COMBO_ACTION(base_base_combo),
   [TO_BASE_LAYER_1] = COMBO_ACTION(base_func_combo),
-  // [TO_BASE_LAYER_2] = COMBO_ACTION(base_nav_combo),
-  [TO_BASE_LAYER_3] = COMBO_ACTION(base_sym_combo),
-  // [TO_BASE_LAYER_4] = COMBO_ACTION(base_num_combo),
+  [TO_BASE_LAYER_3] = COMBO_ACTION(base_navsym_combo),
   [TO_FUNC_LAYER] = COMBO_ACTION(func_combo),
-  [TO_NAV_LAYER] = COMBO_ACTION(nav_combo),
-  [TO_SYM_LAYER] = COMBO_ACTION(sym_combo),
-  [TO_NUM_LAYER] = COMBO_ACTION(num_combo)
+  [TO_NAVSYM_LAYER] = COMBO_ACTION(navsym_combo),
+  [TO_NUM_LAYER] = COMBO_ACTION(num_combo),
+  COMBO(esc_combo, KC_ESC),
+  COMBO(lparen_combo, KC_LPRN),
+  COMBO(rparen_combo, KC_RPRN),
+  COMBO(underscore_combo, KC_UNDS),
+  COMBO(dash_combo, KC_MINS),
+  COMBO(equals_combo, KC_EQL),
+  COMBO(dquote_combo, KC_DQUO),
+  COMBO(squote_combo, KC_QUOT),
+  COMBO(lsquare_combo, KC_LBRC),
+  COMBO(rsquare_combo, KC_RBRC),
+  COMBO(lcurly_combo, KC_LCBR),
+  COMBO(rcurly_combo, KC_RCBR),
+  COMBO(delete_combo, KC_DELETE),
+  COMBO(tab_combo, KC_TAB),
+  COMBO(carrot_combo, KC_CIRC),
+  COMBO(dollar_combo, KC_DLR)
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
@@ -141,14 +231,9 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         layer_move(_FUNC);
       }
       break;
-    case TO_NAV_LAYER:
+    case TO_NAVSYM_LAYER:
       if (pressed) {
-        layer_move(_NAV);
-      }
-      break;
-    case TO_SYM_LAYER:
-      if (pressed) {
-        layer_move(_SYM);
+        layer_move(_NAVSYM);
       }
       break;
     case TO_NUM_LAYER:
