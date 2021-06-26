@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // __F10__ , __F1___ , __F2___ , __F3___ , __INS__     ,     __PSCR_ , _MACRO_ , ___,___ , ___.___ , ___/___ ,
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
 //                               WIN/SPC , __SFT__     ,     CTRLSPC , ALTENTR
-                              //---------+---------+---+---+---------+---------//
+//                              ---------+---------+---+---+---------+---------                              //
   [_FUNC] = LAYOUT( /* FUNCTIONS */
     KC_F12,    KC_F7,    KC_F8,    KC_F9,    KC_CAPS,           KC_J,     KC_MUTE,       KC_VOLD, KC_VOLU,   KC_SCLN,
     KC_F11,    KC_F4,    KC_F5,    KC_F6,    KC_APP,            KC_H,     KC_MPRV,       KC_E,    KC_MPLY,   KC_MNXT,
@@ -120,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ___!___ , ___@___ , ___#___ , ___$___ , ___%___     ,     ___K___ , _HOME__ , __PGD__ , __PGU__ , __END__ ,
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
 //                               WIN/SPC , __SFT__     ,     CTRLSPC , ALTENTR
-                              //---------+---------+---+---+---------+---------//
+//                              ---------+---------+---+---+---------+---------                              //
   [_NAVSYM] = LAYOUT( /* NAVIGATION & SYMBOLS */
     KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_GRV,    KC_TILD,            KC_PLUS, KC_MINS,  KC_PIPE,   KC_BSLS,  KC_SCLN,
     M_UNDO,     M_CUT,      M_COPY,     M_PASTE,   KC_DELETE,          KC_ESC,  KC_LEFT,  KC_DOWN,   KC_UP,    KC_RIGHT,
@@ -137,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ___Z___ , ___X___ , ___C___ , ___V___ , ___%___     ,     ___K___ , ___1___ , ___2___ , ___3___ , ___.___ ,
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
 //                               WIN/SPC , __SFT__     ,     CTRLSPC , ALTENTR
-                              //---------+---------+---+---+---------+---------//
+//                              ---------+---------+---+---+---------+---------                              //
   [_NUM] = LAYOUT( /* NUMBERS */
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,            KC_J,   KC_7,  KC_8,    KC_9,   KC_SCLN,
     KC_PLUS, KC_MINS, KC_ASTR, KC_SLSH, KC_EQL,          KC_0,   KC_4,  KC_5,    KC_6,   KC_O,
