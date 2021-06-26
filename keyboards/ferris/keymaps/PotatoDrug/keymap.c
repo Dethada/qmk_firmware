@@ -73,7 +73,6 @@ enum ferris_layers {
 };
 
 #define KC_GUISPC MT(MOD_LGUI, KC_SPC)
-#define KC_CTLBSPC MT(MOD_LCTL, KC_BSPC)
 #define KC_ALTENT MT(MOD_LALT, KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -85,13 +84,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
 // ___Z___ , ___X___ , ___C___ , ___V___ , ___B___     ,     ___K___ , ___M___ , ___,___ , ___.___ , ___/___ ,
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
-//                               WIN/SPC , __SFT__     ,     CTRLSPC , ALTENTR
+//                               WIN/SPC , __SFT__     ,     _CTRL__ , ALTENTR
 //                              ---------+---------+---+---+---------+---------                              //
   [_BASE] = LAYOUT( /* BASE */
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,            KC_J,    KC_L,  KC_U,    KC_Y,   KC_SCLN,
     KC_A,    KC_R,    KC_S,    KC_T,    KC_D,            KC_H,    KC_N,  KC_E,    KC_I,   KC_O,
     KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,            KC_K,    KC_M,  KC_COMM, KC_DOT, KC_SLSH,
-                              KC_GUISPC, KC_LSFT, KC_CTLBSPC, KC_ALTENT
+                              KC_GUISPC, KC_LSFT, KC_LCTL, KC_ALTENT
   ),
 
 
@@ -102,30 +101,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
 // __F10__ , __F1___ , __F2___ , __F3___ , __INS__     ,     __PSCR_ , _MACRO_ , ___,___ , ___.___ , ___/___ ,
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
-//                               WIN/SPC , __SFT__     ,     CTRLSPC , ALTENTR
+//                               WIN/SPC , __SFT__     ,     _CTRL__ , ALTENTR
 //                              ---------+---------+---+---+---------+---------                              //
   [_FUNC] = LAYOUT( /* FUNCTIONS */
     KC_F12,    KC_F7,    KC_F8,    KC_F9,    KC_CAPS,           KC_J,     KC_MUTE,       KC_VOLD, KC_VOLU,   KC_SCLN,
     KC_F11,    KC_F4,    KC_F5,    KC_F6,    KC_APP,            KC_H,     KC_MPRV,       KC_E,    KC_MPLY,   KC_MNXT,
     KC_F10,    KC_F1,    KC_F2,    KC_F3,    KC_INS,            KC_PSCR,  M_INPUTSWITCH, KC_COMM, KC_DOT,    KC_SLSH,
-                                         KC_LWIN, KC_LSFT, KC_LCTL, KC_LALT
+                                      KC_LWIN, KC_LSFT, KC_LCTL, KC_LALT
   ),
 
 
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
-// ___^___ , ___&___ , ___*___ , ___`___ , ___~___     ,     ___+___ , ___-___ , ___|___ , ___\___ , ___;___ ,
+// ___^___ , ___&___ , ___*___ , ___`___ , ___~___     ,     ___J___ , ___L___ , ___|___ , ___\___ , ___;___ ,
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
 // _MACRO_ , _MACRO_ , _MACRO_ , _MACRO_ , __DEL__     ,     __ESC__ , ___←___ , ___↓___ , ___↑___ , ___→___ ,
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
 // ___!___ , ___@___ , ___#___ , ___$___ , ___%___     ,     ___K___ , _HOME__ , __PGD__ , __PGU__ , __END__ ,
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
-//                               WIN/SPC , __SFT__     ,     CTRLSPC , ALTENTR
+//                               WIN/SPC , __SFT__     ,     _CTRL__ , ALTENTR
 //                              ---------+---------+---+---+---------+---------                              //
   [_NAVSYM] = LAYOUT( /* NAVIGATION & SYMBOLS */
-    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_GRV,    KC_TILD,            KC_PLUS, KC_MINS,  KC_PIPE,   KC_BSLS,  KC_SCLN,
+    KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_GRV,    KC_TILD,            KC_J,    KC_L,  KC_PIPE,   KC_BSLS,  KC_SCLN,
     M_UNDO,     M_CUT,      M_COPY,     M_PASTE,   KC_DELETE,          KC_ESC,  KC_LEFT,  KC_DOWN,   KC_UP,    KC_RIGHT,
     KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,    KC_PERC,            KC_K,    KC_HOME,  KC_PGDOWN, KC_PGUP,  KC_END,
-                              KC_GUISPC, KC_LSFT, KC_CTLBSPC, KC_ALTENT
+                              KC_GUISPC, KC_LSFT, KC_LCTL, KC_ALTENT
   ),
 
 
@@ -136,13 +135,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
 // ___Z___ , ___X___ , ___C___ , ___V___ , ___%___     ,     ___K___ , ___1___ , ___2___ , ___3___ , ___.___ ,
 //---------+---------+---------+---------+---------         ---------+---------+---------+---------+---------//
-//                               WIN/SPC , __SFT__     ,     CTRLSPC , ALTENTR
+//                               WIN/SPC , __SFT__     ,     _CTRL__ , ALTENTR
 //                              ---------+---------+---+---+---------+---------                              //
   [_NUM] = LAYOUT( /* NUMBERS */
     KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,            KC_J,   KC_7,  KC_8,    KC_9,   KC_SCLN,
     KC_PLUS, KC_MINS, KC_ASTR, KC_SLSH, KC_EQL,          KC_0,   KC_4,  KC_5,    KC_6,   KC_O,
     KC_Z,    KC_X,    KC_C,    KC_V,    KC_PERC,         KC_K,   KC_1,  KC_2,    KC_3,   KC_DOT,
-                              KC_GUISPC, KC_LSFT, KC_CTLBSPC, KC_ALTENT
+                              KC_GUISPC, KC_LSFT, KC_LCTL, KC_ALTENT
   )
 };
 
@@ -162,13 +161,14 @@ enum combo_events {
 const uint16_t PROGMEM base_base_combo[] = {KC_F, KC_P, COMBO_END};
 const uint16_t PROGMEM base_func_combo[] = {KC_F8, KC_F9, COMBO_END};
 const uint16_t PROGMEM base_navsym_combo[] = {KC_ASTR, KC_GRV, COMBO_END};
-const uint16_t PROGMEM func_combo[] = {KC_L, KC_U, COMBO_END};
-const uint16_t PROGMEM navsym_combo[] = {KC_U, KC_Y, COMBO_END};
-const uint16_t PROGMEM num_combo[] = {KC_L, KC_Y, COMBO_END};
+const uint16_t PROGMEM navsym_combo[] = {KC_L, KC_U, COMBO_END};
+const uint16_t PROGMEM num_combo[] = {KC_U, KC_Y, COMBO_END};
+const uint16_t PROGMEM func_combo[] = {KC_L, KC_Y, COMBO_END};
 
 // key combos
 const uint16_t PROGMEM esc_combo[] = {KC_D, KC_H, COMBO_END};
 const uint16_t PROGMEM delete_combo[] = {KC_B, KC_K, COMBO_END};
+const uint16_t PROGMEM backspace_combo[] = {KC_J, KC_L, COMBO_END};
 const uint16_t PROGMEM tab_combo[] = {KC_P, KC_G, COMBO_END};
 const uint16_t PROGMEM lparen_combo[] = {KC_S, KC_T, COMBO_END};
 const uint16_t PROGMEM rparen_combo[] = {KC_T, KC_D, COMBO_END};
@@ -183,6 +183,7 @@ const uint16_t PROGMEM lcurly_combo[] = {KC_E, KC_I, COMBO_END};
 const uint16_t PROGMEM rcurly_combo[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM carrot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM dollar_combo[] = {KC_DOT, KC_SLSH, COMBO_END};
+const uint16_t PROGMEM hash_combo[] = {KC_C, KC_V, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [TO_BASE_LAYER_0] = COMBO_ACTION(base_base_combo),
@@ -204,9 +205,11 @@ combo_t key_combos[COMBO_COUNT] = {
   COMBO(lcurly_combo, KC_LCBR),
   COMBO(rcurly_combo, KC_RCBR),
   COMBO(delete_combo, KC_DELETE),
+  COMBO(backspace_combo, KC_BSPC),
   COMBO(tab_combo, KC_TAB),
   COMBO(carrot_combo, KC_CIRC),
-  COMBO(dollar_combo, KC_DLR)
+  COMBO(dollar_combo, KC_DLR),
+  COMBO(hash_combo, KC_HASH)
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
