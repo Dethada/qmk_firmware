@@ -169,6 +169,7 @@ const uint16_t PROGMEM func_combo[] = {KC_L, KC_Y, COMBO_END};
 const uint16_t PROGMEM esc_combo[] = {KC_D, KC_H, COMBO_END};
 const uint16_t PROGMEM delete_combo[] = {KC_B, KC_K, COMBO_END};
 const uint16_t PROGMEM backspace_combo[] = {KC_J, KC_L, COMBO_END};
+const uint16_t PROGMEM backspace_combo_num[] = {KC_J, KC_7, COMBO_END};
 const uint16_t PROGMEM tab_combo[] = {KC_P, KC_G, COMBO_END};
 const uint16_t PROGMEM lparen_combo[] = {KC_S, KC_T, COMBO_END};
 const uint16_t PROGMEM rparen_combo[] = {KC_T, KC_D, COMBO_END};
@@ -184,6 +185,7 @@ const uint16_t PROGMEM rcurly_combo[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM carrot_combo[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM dollar_combo[] = {KC_DOT, KC_SLSH, COMBO_END};
 const uint16_t PROGMEM hash_combo[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM plus_combo[] = {KC_X, KC_C, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
   [TO_BASE_LAYER_0] = COMBO_ACTION(base_base_combo),
@@ -206,10 +208,12 @@ combo_t key_combos[COMBO_COUNT] = {
   COMBO(rcurly_combo, KC_RCBR),
   COMBO(delete_combo, KC_DELETE),
   COMBO(backspace_combo, KC_BSPC),
+  COMBO(backspace_combo_num, KC_BSPC),
   COMBO(tab_combo, KC_TAB),
   COMBO(carrot_combo, KC_CIRC),
   COMBO(dollar_combo, KC_DLR),
-  COMBO(hash_combo, KC_HASH)
+  COMBO(hash_combo, KC_HASH),
+  COMBO(plus_combo, KC_PLUS)
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {

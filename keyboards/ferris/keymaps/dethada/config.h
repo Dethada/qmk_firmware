@@ -5,4 +5,4 @@
 #define IGNORE_MOD_TAP_INTERRUPT
 
 #define FORCE_NKRO
-#define COMBO_COUNT 25
+#define COMBO_COUNT 27
