@@ -123,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_NAVSYM] = LAYOUT( /* NAVIGATION & SYMBOLS */
     KC_CIRC,    KC_AMPR,    KC_ASTR,    KC_GRV,    KC_TILD,            KC_J,    KC_L,  KC_PIPE,   KC_BSLS,  KC_SCLN,
     M_UNDO,     M_CUT,      M_COPY,     M_PASTE,   KC_DELETE,          KC_ESC,  KC_LEFT,  KC_DOWN,   KC_UP,    KC_RIGHT,
-    KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,    KC_PERC,            KC_K,    KC_HOME,  KC_PGDOWN, KC_PGUP,  KC_END,
+    KC_EXLM,    KC_AT,      KC_HASH,    KC_DLR,    KC_PERC,            KC_K,    KC_HOME,  KC_PGDN, KC_PGUP,  KC_END,
                               KC_GUISPC, KC_LSFT, KC_LCTL, KC_ALTENT
   ),
 
